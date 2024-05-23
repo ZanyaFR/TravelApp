@@ -7,7 +7,6 @@ import org.junit.Test;
 import ch.hevs.businessobject.Account;
 import ch.hevs.businessobject.Client;
 
-import ch.hevs.businessobject.Country;
 import ch.hevs.businessobject.Destination;
 import ch.hevs.businessobject.Flight;
 import ch.hevs.businessobject.Origin;
@@ -37,12 +36,14 @@ public class PopulateDB extends TestCase {
 			
 			Destination d1 = new Destination("Geneva", "Switzerland", "GVA", "5");
 			Origin o1 = new Origin("London", "UK", "LHR", "3");
-			Passenger p1 = new Passenger("John", "Doe", "ss","1234567890");
-			Flight f1 = new Flight("2021-12-12", "12:00", "2021-12-12", "14:00", "London", "Geneva", 100, false);
+			Flight f1 = new Flight("2021-12-12", "12:00", "2021-12-12", "14:00", o1, d1, 100, false);
+			Passenger p1 = new Passenger("John", "Doe", "ss","1234567890", f1);
 
-			em.persist(o1);
 			em.persist(d1);
+			em.persist(o1);
 			em.persist(p1);
+			em.persist(f1);
+
 			tx.commit();
 
 		} catch (Exception e) {

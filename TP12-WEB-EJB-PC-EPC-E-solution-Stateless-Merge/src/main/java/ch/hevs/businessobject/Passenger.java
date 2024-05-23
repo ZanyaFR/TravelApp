@@ -3,6 +3,8 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
 
 
 @Entity
@@ -17,12 +19,17 @@ public class Passenger {
     private String email;
     private String phoneNumber;
 
+    @ManyToOne
+    @JoinColumn(name = "flight_id")
+    private Flight flight;
 
-    public Passenger(String firstName, String lastName, String email, String phoneNumber) {
+
+    public Passenger(String firstName, String lastName, String email, String phoneNumber, Flight flight) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.email = email;
         this.phoneNumber = phoneNumber;
+        this.flight = flight;
     }
 
 

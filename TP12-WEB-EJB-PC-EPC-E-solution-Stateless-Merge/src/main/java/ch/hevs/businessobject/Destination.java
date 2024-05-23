@@ -1,11 +1,19 @@
 package ch.hevs.businessobject;
 
+import java.util.HashSet;
+
 import jakarta.persistence.Entity;
+import jakarta.persistence.OneToMany;
+import java.util.Set;
 
 @Entity
 public class Destination extends Country{
 
     private String BaggageClaim;
+
+    //a Destination can have multiple flights
+     @OneToMany(mappedBy = "destination")
+    private Set<Flight> flights = new HashSet<>();
 
 
     public Destination( String City, String Name,
@@ -17,5 +25,9 @@ public class Destination extends Country{
     //getters, and setters
     public String getBaggageClaim() { return BaggageClaim; }
     public void setBaggageClaim(String BaggageClaim) { this.BaggageClaim = BaggageClaim; }
+
+    
+    public Set<Flight> getFlights() { return flights; }
+    public void setFlights(Set<Flight> flights) { this.flights = flights; }
    
 }
