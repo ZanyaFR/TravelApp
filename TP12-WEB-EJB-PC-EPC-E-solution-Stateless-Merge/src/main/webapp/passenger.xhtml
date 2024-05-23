@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui">
+<h:head>
+    <title>Passenger Management</title>
+</h:head>
+<h:body>
+    <h:form>
+        <h2>Passengers</h2>
+        <p:dataTable value="#{passengerBean.passengers}" var="passenger">
+            <p:column headerText="FirstName">
+                <h:outputText value="#{passenger.firstName}" />
+            </p:column>
+            <p:column headerText="Last Name">
+                <h:outputText value="#{passenger.lastName}" />
+            </p:column>
+            <p:column headerText="Email">
+                <h:outputText value="#{passenger.email}" />
+            </p:column>
+            <p:column headerText="Phone Number">
+                <h:outputText value="#{passenger.phoneNumber}" />
+            </p:column>
+            <p:column headerText="Actions">
+                <h:commandButton value="Edit" action="#{passengerBean.setSelectedPassenger(passenger)}" />
+                <h:commandButton value="Delete" action="#{passengerBean.deletePassenger}" />
+            </p:column>
+        </p:dataTable>
+        
+        <h:panelGrid columns="2" rendered="#{not empty passengerBean.selectedPassenger}">
+            <h:outputLabel for="firstName" value="First Name:" />
+            <h:inputText id="firstName" value="#{passengerBean.selectedPassenger.firstName}" />
+            
+            <h:outputLabel for="lastName" value="Last Name:" />
+            <h:inputText id="lastName" value="#{passengerBean.selectedPassenger.lastName}" />
+            
+            <h:outputLabel for="email" value="Email:" />
+            <h:inputText id="email" value="#{passengerBean.selectedPassenger.email}" />
+            
+            <h:outputLabel for="phoneNumber" value="Phone Number:" />
+            <h:inputText id="phoneNumber" value="#{passengerBean.selectedPassenger.phoneNumber}" />
+            
+            <h:commandButton value="Update" action="#{passengerBean.updatePassenger}" />
+        </h:panelGrid>
+        
+        <h:panelGrid columns="2">
+            <h:outputLabel for="newFirstName" value="First Name:" />
+            <h:inputText id="newFirstName" value="#{passengerBean.firstName}" />
+            
+            <h:outputLabel for="newLastName" value="Last Name:" />
+            <h:inputText id="newLastName" value="#{passengerBean.lastName}" />
+            
+            <h:outputLabel for="newEmail" value="Email:" />
+            <h:inputText id="newEmail" value="#{passengerBean.email}" />
+            
+            <h:outputLabel for="newPhoneNumber" value="Phone Number:" />
+            <h:inputText id="newPhoneNumber" value="#{passengerBean.phoneNumber}" />
+            
+            <h:commandButton value="Create" action="#{passengerBean.createPassenger}" />
+        </h:panelGrid>
+    </h:form>
+</h:body>
+</html>
