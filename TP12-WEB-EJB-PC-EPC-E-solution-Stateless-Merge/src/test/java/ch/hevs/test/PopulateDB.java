@@ -6,7 +6,13 @@ import org.junit.Test;
 
 import ch.hevs.businessobject.Account;
 import ch.hevs.businessobject.Client;
+
+import ch.hevs.businessobject.Country;
+import ch.hevs.businessobject.Destination;
+import ch.hevs.businessobject.Flight;
+import ch.hevs.businessobject.Origin;
 import ch.hevs.businessobject.Passenger;
+
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.EntityManagerFactory;
 import jakarta.persistence.EntityTransaction;
@@ -26,15 +32,16 @@ public class PopulateDB extends TestCase {
 			EntityManager em = emf.createEntityManager();
 			tx = em.getTransaction();
 			tx.begin();
-		
-			Client c1 = new Client("Zinedine", "Zidane");
-			Account a1 = new Account("1000", 10000, c1, "Compte Courant");
-			// ...
-			//    public Passenger(String firstName, String lastName, String email, String phoneNumber) {
+			
+			
+			
+			Destination d1 = new Destination("Geneva", "Switzerland", "GVA", "5");
+			Origin o1 = new Origin("London", "UK", "LHR", "3");
 			Passenger p1 = new Passenger("John", "Doe", "ss","1234567890");
+			Flight f1 = new Flight("2021-12-12", "12:00", "2021-12-12", "14:00", "London", "Geneva", 100, false);
 
-			em.persist(a1);
-			em.persist(c1);
+			em.persist(o1);
+			em.persist(d1);
 			em.persist(p1);
 			tx.commit();
 

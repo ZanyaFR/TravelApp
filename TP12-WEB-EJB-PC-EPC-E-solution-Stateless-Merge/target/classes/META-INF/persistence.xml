@@ -9,7 +9,13 @@
 		<jta-data-source>java:/labsDS</jta-data-source>
 		<class>ch.hevs.businessobject.Client</class>
 		<class>ch.hevs.businessobject.Account</class>
+
 		<class>ch.hevs.businessobject.Passenger</class>
+		<class>ch.hevs.businessobject.Flight</class>
+		<class>ch.hevs.businessobject.Origin</class>
+		<class>ch.hevs.businessobject.Destination</class>
+		<class>ch.hevs.businessobject.Country</class>
+	
 		<properties>
 			<property name="hibernate.cache.use_second_level_cache" value="true" />
 			<property name="hibernate.cache.use_query_cache" value="true" />
@@ -25,7 +31,12 @@
 	<provider>org.hibernate.jpa.HibernatePersistenceProvider</provider>
     	<class>ch.hevs.businessobject.Client</class>
 		<class>ch.hevs.businessobject.Account</class>
+
 		<class>ch.hevs.businessobject.Passenger</class>
+		<class>ch.hevs.businessobject.Flight</class>
+		<class>ch.hevs.businessobject.Origin</class>
+		<class>ch.hevs.businessobject.Destination</class>
+		<class>ch.hevs.businessobject.Country</class>
 		<properties>
             <property name="jakarta.persistence.jdbc.driver" value="org.hsqldb.jdbcDriver"/>
             <property name="jakarta.persistence.jdbc.url" value="jdbc:hsqldb:hsql://localhost/DB"/>
