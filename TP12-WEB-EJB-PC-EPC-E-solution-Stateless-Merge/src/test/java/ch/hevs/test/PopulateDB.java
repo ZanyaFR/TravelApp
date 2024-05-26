@@ -33,12 +33,19 @@ public class PopulateDB extends TestCase {
 			tx.begin();
 			
 			
+			Client c1 = new Client("Zinedine", "Zidane");
+			Account a1 = new Account("1000", 10000, c1, "Compte Courant");
+
+			
 			
 			Destination d1 = new Destination("Geneva", "Switzerland", "GVA", "5");
 			Origin o1 = new Origin("London", "UK", "LHR", "3");
 			Flight f1 = new Flight("2021-12-12", "12:00", "2021-12-12", "14:00", o1, d1, 100, false);
 			Passenger p1 = new Passenger("John", "Doe", "ss","1234567890", f1);
 
+			
+			em.persist(c1);
+			em.persist(a1);
 			em.persist(d1);
 			em.persist(o1);
 			em.persist(p1);

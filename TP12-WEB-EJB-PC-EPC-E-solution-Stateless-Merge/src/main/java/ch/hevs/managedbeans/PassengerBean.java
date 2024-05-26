@@ -1,18 +1,13 @@
 package ch.hevs.managedbeans;
 
 import java.io.Serializable;
-import java.util.ArrayList;
 import java.util.List;
-
-import javax.naming.InitialContext;
-import javax.naming.NamingException;
 
 import ch.hevs.businessobject.Passenger;
 
 import jakarta.annotation.ManagedBean;
 import jakarta.annotation.PostConstruct;
 import jakarta.enterprise.context.SessionScoped;
-import jakarta.faces.event.ValueChangeEvent;
 import jakarta.inject.Named;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.PersistenceContext;

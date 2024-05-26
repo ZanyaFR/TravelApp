@@ -23,10 +23,13 @@ public class Destination extends Country{
     }
 
     //getters, and setters
+
+    //Baggage Claim
     public String getBaggageClaim() { return BaggageClaim; }
     public void setBaggageClaim(String BaggageClaim) { this.BaggageClaim = BaggageClaim; }
 
     
+    //Flights
     public Set<Flight> getFlights() { return flights; }
     public void setFlights(Set<Flight> flights) { this.flights = flights; }
    

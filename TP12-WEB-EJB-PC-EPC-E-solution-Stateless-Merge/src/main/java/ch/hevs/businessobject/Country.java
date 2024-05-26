@@ -23,13 +23,19 @@ public abstract class Country{
     }
 
 
+    //ID
+    public Long getId() { return id; }
+    public void setId(Long id) { this.id = id; }
 
+    //City
     public String getCity() { return City; }
     public void setCity(String city) { City = city; }
 
+    //Name
     public String getName() { return Name; }
     public void setName(String name) { Name = name; }
 
+    //Airport Code
     public String getAirportCode() { return airportCode; }
     public void setAirportCode(String airportCode) { this.airportCode = airportCode; }
 }

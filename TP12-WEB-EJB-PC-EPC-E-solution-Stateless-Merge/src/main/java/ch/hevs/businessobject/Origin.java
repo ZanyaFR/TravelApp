@@ -23,9 +23,12 @@ public class Origin extends Country{
     }
     
     //getters, and setters
+
+    //Terminal
     public String getTerminal() { return terminal; }
     public void setTerminal(String terminal) { this.terminal = terminal; }
 
+    //Flights
     public Set<Flight> getFlights() { return flights; }
     public void setFlights(Set<Flight> flights) { this.flights = flights; }
    

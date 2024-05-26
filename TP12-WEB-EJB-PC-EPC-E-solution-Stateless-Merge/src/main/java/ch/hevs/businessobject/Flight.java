@@ -25,6 +25,7 @@ public class Flight {
     private boolean isFull;
 
      @OneToMany(mappedBy = "flight")
+     //set not List to avoid repeats
     private Set<Passenger> passengers = new HashSet<>();
 
     @ManyToOne
@@ -55,28 +56,43 @@ public class Flight {
     
     //getters, and setters
     
+    //ID
+    public Long getId() { return id; }
+    public void setId(Long id) { this.id = id; }
+
+    //Departure date
     public String getDepartureDate() {   return departureDate; }
     public void setDepartureDate(String departureDate) { this.departureDate = departureDate;}
     
+    //Departure time
     public String getDepartureTime() { return departureTime; }
     public void setDepartureTime(String departureTime) {this.departureTime = departureTime;}
     
+    //Arrival date
     public String getArrivalDate() { return arrivalDate;}
     public void setArrivalDate(String arrivalDate) { this.arrivalDate = arrivalDate; }
     
+    //Arrival time
     public String getArrivalTime() { return arrivalTime;}
     public void setArrivalTime(String arrivalTime) {this.arrivalTime = arrivalTime;}
     
-    // public String getOrigin() { return origin;}
-    // public void setOrigin(String origin) {this.origin = origin;  }
-    
-    // public String getDestination() { return destination; }
-    // public void setDestination(String destination) {this.destination = destination;}
-    
+    //Price
     public double getPrice() { return price; }
     public void setPrice(double price) {this.price = price;}
     
+    //isFull
     public boolean isFull() { return isFull;}
     public void setFull(boolean isFull) {this.isFull = isFull;}
+   
+    //Passengers
+    public Set<Passenger> getPassengers(){return passengers;}
+    public void setPassengers(Set<Passenger> passengers) { this.passengers = passengers;}
+
+    //Destination
+    public Destination getDestination() { return destination; }
+    public void setDestination(Destination destination) { this.destination = destination; }
     
+    //Origin
+    public Origin getOrigin() { return origin; }
+    public void setOrigin(Origin origin) { this.origin = origin; }
 }
