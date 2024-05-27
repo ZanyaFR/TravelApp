@@ -29,7 +29,7 @@ public class ReservationManagedBean implements Serializable {
 
     private List<Passenger> passengers;
     private List<String> passengerNames;
-    private Passenger selectedPassenger; // For selecting a client
+    private String selectedPassenger; // For selecting a client
     
     private List<Flight> flights;
     private Flight selectedFlight; // For selecting a flight
@@ -99,10 +99,10 @@ public class ReservationManagedBean implements Serializable {
     }
 
     // Getters and setters for the new properties
-    public Passenger getSelectedPassenger() {
+    public String getSelectedPassenger() {
         return selectedPassenger;
     }
-    public void setSelectedPassenger(Passenger selectedPassenger) {
+    public void setSelectedPassenger(String selectedPassenger) {
         this.selectedPassenger = selectedPassenger;
     }
 

@@ -9,13 +9,13 @@
 <ui:composition template="/WEB-INF/templates/BasicTemplate.xhtml">
     <ui:define name="content">
         <h:form>
-            <h2>Booking Information</h2>
+            <h2>Booking Information 2</h2>
             
             <br></br>
             <h:panelGrid columns="2">
                 <h:outputText value="Passenger: "></h:outputText>
                 <h:selectOneMenu value="#{reservationManagedBean.selectedPassenger}" onchange="submit()">
-                    <f:selectItems value="#{reservationManagedBean.passengers}"/>
+                    <f:selectItems value="#{reservationManagedBean.passengerNames}"/>
                 </h:selectOneMenu>
                 <h:outputText value="Origin: "></h:outputText>
                 <h:selectOneMenu value="#{reservationManagedBean.selectedOrigin}" onchange="submit()">
