@@ -26,6 +26,10 @@ public class ReservationBean implements Reservation {
         return flight;
     }
     
+    public List<Flight> getFlights() {
+        return em.createQuery("FROM Flight").getResultList();
+    }
+
     public List<Flight> getFlightsFromPassengerName(String passengerName) {
         return (List<Flight>) em.createQuery("SELECT p.flights FROM Passenger p where p.lastname=:lastname").setParameter("lastname", passengerName).getResultList();
     }

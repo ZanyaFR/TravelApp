@@ -13,23 +13,20 @@
             
             <br></br>
             <h:panelGrid columns="2">
-                <h:outputText value="Client: "></h:outputText>
-                <h:selectOneMenu value="#{reservationManagedBean.selectedClient}" onchange="submit()">
-                    <f:selectItems value="#{reservationManagedBean.clientNames}"/>
+                <h:outputText value="Passenger: "></h:outputText>
+                <h:selectOneMenu value="#{reservationManagedBean.selectedPassenger}" onchange="submit()">
+                    <f:selectItems value="#{reservationManagedBean.passengers}"/>
                 </h:selectOneMenu>
-                <h:outputText value="Flight: "></h:outputText>
-                <h:selectOneMenu value="#{reservationManagedBean.selectedFlight}" onchange="submit()">
-                    <f:selectItems value="#{reservationManagedBean.flightNames}"/>
+                <h:outputText value="Origin: "></h:outputText>
+                <h:selectOneMenu value="#{reservationManagedBean.selectedOrigin}" onchange="submit()">
+                    <f:selectItems value="#{reservationManagedBean.originNames}"/>
                 </h:selectOneMenu>
-                <h:outputText value="Departure: "></h:outputText>
-                <h:selectOneMenu value="#{reservationManagedBean.selectedDeparture}" onchange="submit()">
-                    <f:selectItems value="#{reservationManagedBean.departureLocations}"/>
-                </h:selectOneMenu>
-                <h:outputText value="Arrival:  "></h:outputText>
-                <h:selectOneMenu value="#{reservationManagedBean.selectedArrival}" onchange="submit()">
-                    <f:selectItems value="#{reservationManagedBean.arrivalLocations}"/>
+                <h:outputText value="Destination: "></h:outputText>
+                <h:selectOneMenu value="#{reservationManagedBean.selectedDestination}" onchange="submit()">
+                    <f:selectItems value="#{reservationManagedBean.flightsDestination}"/>
                 </h:selectOneMenu>
             </h:panelGrid>
+
             
             <h:commandButton value="Booking" action="#{reservationManagedBean.performBooking}"></h:commandButton>
         </h:form>

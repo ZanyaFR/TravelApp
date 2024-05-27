@@ -18,6 +18,8 @@ public interface Reservation {
     
     Flight getFlight(String flightNumber);
 
+    List<Flight> getFlights();
+
     public List<Flight> getFlightsFromPassengerName(String passengerName);
 
     void bookFlight(Passenger passenger, Flight flight) throws Exception;
