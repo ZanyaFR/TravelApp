@@ -2,8 +2,6 @@ package ch.hevs.bankservice;
 
 import java.util.List;
 
-import ch.hevs.businessobject.Origin;
-import ch.hevs.businessobject.Destination;
 import ch.hevs.businessobject.Flight;
 import ch.hevs.businessobject.Passenger;
 
@@ -20,12 +18,13 @@ public interface Reservation {
     
     Flight getFlight(String flightNumber);
 
-    List<Flight> getFlightsFromPassengerName(String passengerName);
+    public List<Flight> getFlightsFromPassengerName(String passengerName);
 
     void bookFlight(Passenger passenger, Flight flight) throws Exception;
 
     List<Passenger> getPassengers();
 
     Passenger getPassenger(long passengerId);
+
     
 }

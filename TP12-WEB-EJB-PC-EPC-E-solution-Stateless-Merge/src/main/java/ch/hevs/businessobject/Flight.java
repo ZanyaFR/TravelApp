@@ -22,6 +22,8 @@ public class Flight {
     private String arrivalDate;
     private String arrivalTime;
     private double price;
+    private int capacity;
+    private int nbPassengers;
     private boolean isFull;
 
      @OneToMany(mappedBy = "flight")
@@ -43,7 +45,7 @@ public class Flight {
     }
 
     public Flight(String departureDate, String departureTime, String arrivalDate, 
-    String arrivalTime,Origin origin, Destination destination, int price, boolean isFull) {
+    String arrivalTime,Origin origin, Destination destination, int price,int capacity, boolean isFull) {
         this.departureDate = departureDate;
         this.departureTime = departureTime;
         this.arrivalDate = arrivalDate;
@@ -51,6 +53,8 @@ public class Flight {
         this.origin = origin;
         this.destination = destination;
         this.price = price;
+        this.capacity = capacity;
+        this.nbPassengers = 0;
         this.isFull = isFull;
         }
     
@@ -79,14 +83,50 @@ public class Flight {
     //Price
     public double getPrice() { return price; }
     public void setPrice(double price) {this.price = price;}
+
+    //Capacity
+    public int getCapacity() { return capacity; }
+    public void setCapacity(int capacity) {this.capacity = capacity;}
+
+    //nbPassengers
+    public int getNbPassengers() { return nbPassengers; }
+    public void setNbPassengers(int nbPassengers) {
+        if (nbPassengers > capacity){
+            throw new IllegalStateException("Flight is full, Pick another one.");
+        }else{
+        this.nbPassengers =+ nbPassengers;
+        }
+
+    }
     
     //isFull
     public boolean isFull() { return isFull;}
     public void setFull(boolean isFull) {this.isFull = isFull;}
    
-    //Passengers
+    //Passengers list
     public Set<Passenger> getPassengers(){return passengers;}
-    public void setPassengers(Set<Passenger> passengers) { this.passengers = passengers;}
+    public void setPassengers(Set<Passenger> passengers) { 
+
+        if (passengers.size() == capacity) {
+            isFull = true;
+        }else if(passengers.size() > capacity || isFull == true){
+                throw new IllegalStateException("Flight is full, Pick another one.");}
+        else{
+        this.passengers = passengers;
+        setNbPassengers(passengers.size());
+        }
+
+    }
+
+    //Passenger
+    public void setPassenger(Passenger Passenger){
+        if (isFull){
+            throw new IllegalStateException("Flight is full, Pick another one.");
+        }else{
+        passengers.add(Passenger);
+        setNbPassengers(1);
+        }
+    }
 
     //Destination
     public Destination getDestination() { return destination; }
@@ -95,4 +135,5 @@ public class Flight {
     //Origin
     public Origin getOrigin() { return origin; }
     public void setOrigin(Origin origin) { this.origin = origin; }
+
 }

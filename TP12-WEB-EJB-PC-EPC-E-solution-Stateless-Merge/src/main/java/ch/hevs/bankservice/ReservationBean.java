@@ -12,11 +12,12 @@ import jakarta.persistence.Query;
 
 @Stateless
 public class ReservationBean implements Reservation {
-    
-    @PersistenceContext(unitName = "flightPU", type=PersistenceContextType.TRANSACTION)
+ 
+    @PersistenceContext(unitName = "reservationPU", type=PersistenceContextType.TRANSACTION)
     private EntityManager em;
 
     public Flight getFlight(String flightNumber) {
+        
         Query query = em.createQuery("FROM Flight f WHERE f.number=:number");
         query.setParameter("number", flightNumber);
         
@@ -26,14 +27,18 @@ public class ReservationBean implements Reservation {
     }
     
     public List<Flight> getFlightsFromPassengerName(String passengerName) {
-        return (List<Flight>) em.createQuery("SELECT p.flights FROM Passenger p where p.name=:name").setParameter("name", passengerName).getResultList();
+        return (List<Flight>) em.createQuery("SELECT p.flights FROM Passenger p where p.lastname=:lastname").setParameter("lastname", passengerName).getResultList();
     }
 
+    //make the reservation method :
     public void bookFlight(Passenger passenger, Flight flight) {
+        
+        
         Passenger realPassenger = em.merge(passenger);
         Flight realFlight = em.merge(flight);
-        realPassenger.getFlights().add(realFlight);
-        realFlight.getPassengers().add(realPassenger);
+        
+        realPassenger.setFlight(realFlight);
+        realFlight.setPassenger(realPassenger);
     }
 
     public List<Passenger> getPassengers() {
@@ -43,4 +48,6 @@ public class ReservationBean implements Reservation {
     public Passenger getPassenger(long passengerId) {
         return (Passenger) em.createQuery("FROM Passenger p where p.id=:id").setParameter("id", passengerId).getSingleResult();
     }
+
+    
 }
