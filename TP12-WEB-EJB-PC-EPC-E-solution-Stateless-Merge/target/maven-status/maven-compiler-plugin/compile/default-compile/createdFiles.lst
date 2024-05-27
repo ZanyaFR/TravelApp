@@ -1,0 +1,11 @@
+ch\hevs\businessobject\Flight.class
+ch\hevs\businessobject\Client.class
+ch\hevs\businessobject\Origin.class
+ch\hevs\reservationservice\Reservation.class
+ch\hevs\businessobject\Account.class
+ch\hevs\exception\TravelException.class
+ch\hevs\businessobject\Passenger.class
+ch\hevs\businessobject\Country.class
+ch\hevs\businessobject\Destination.class
+ch\hevs\managedbeans\ReservationManagedBean.class
+ch\hevs\reservationservice\ReservationBean.class
