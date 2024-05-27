@@ -1,0 +1,11 @@
+ch\hevs\bankservice\Bank.class
+ch\hevs\businessobject\Flight.class
+ch\hevs\businessobject\Client.class
+ch\hevs\businessobject\Origin.class
+ch\hevs\exception\BankException.class
+ch\hevs\managedbeans\TransferBean.class
+ch\hevs\bankservice\BankBean.class
+ch\hevs\businessobject\Account.class
+ch\hevs\businessobject\Passenger.class
+ch\hevs\businessobject\Country.class
+ch\hevs\businessobject\Destination.class
