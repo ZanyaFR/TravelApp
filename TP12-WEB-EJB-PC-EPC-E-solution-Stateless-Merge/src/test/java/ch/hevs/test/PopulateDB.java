@@ -4,8 +4,6 @@ import java.sql.SQLException;
 
 import org.junit.Test;
 
-import ch.hevs.businessobject.Account;
-import ch.hevs.businessobject.Client;
 
 import ch.hevs.businessobject.Destination;
 import ch.hevs.businessobject.Flight;
@@ -32,11 +30,7 @@ public class PopulateDB extends TestCase {
 			tx = em.getTransaction();
 			tx.begin();
 			
-			
-			Client c1 = new Client("Zinedine", "Zidane");
-			Account a1 = new Account("1000", 10000, c1, "Compte Courant");
-
-			
+	
 			
 			Destination d1 = new Destination("Geneva", "Switzerland", "GVA", "5");
 			Origin o1 = new Origin("London", "UK", "LHR", "3");
@@ -45,8 +39,6 @@ public class PopulateDB extends TestCase {
 			Passenger p1 = new Passenger("John", "Doe", "ss","1234567890", f1);
 
 			
-			em.persist(c1);
-			em.persist(a1);
 			em.persist(d1);
 			em.persist(o1);
 			em.persist(p1);

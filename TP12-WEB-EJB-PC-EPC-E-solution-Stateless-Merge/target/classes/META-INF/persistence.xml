@@ -7,9 +7,6 @@
 <!-- 	For use with the application server -->
 	<persistence-unit name="reservationPU">
 		<jta-data-source>java:/labsDS</jta-data-source>
-		<class>ch.hevs.businessobject.Client</class>
-		<class>ch.hevs.businessobject.Account</class>
-
 		<class>ch.hevs.businessobject.Passenger</class>
 		<class>ch.hevs.businessobject.Flight</class>
 		<class>ch.hevs.businessobject.Origin</class>
@@ -28,9 +25,7 @@
              
 <!-- 	For use with JUnit to populate the BD -->	            
     <persistence-unit name="reservationPU_unitTest">
-	<provider>org.hibernate.jpa.HibernatePersistenceProvider</provider>
-    	<class>ch.hevs.businessobject.Client</class>
-		<class>ch.hevs.businessobject.Account</class>
+	<!-- <provider>org.hibernate.jpa.HibernatePersistenceProvider</provider> -->
 
 		<class>ch.hevs.businessobject.Passenger</class>
 		<class>ch.hevs.businessobject.Flight</class>

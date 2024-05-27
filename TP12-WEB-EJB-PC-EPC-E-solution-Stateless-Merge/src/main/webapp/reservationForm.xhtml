@@ -9,15 +9,29 @@
 <ui:composition template="/WEB-INF/templates/BasicTemplate.xhtml">
     <ui:define name="content">
         <h:form>
-            <h:outputLabel value="Reservation Information:"></h:outputLabel>
+            <h2>Booking Information</h2>
+            
             <br></br>
-            <h:panelGrid columns="4">
-                <h:outputText value="Passenger ID: "></h:outputText>
-                <h:inputText value="#{reservationBean.passengerId}"></h:inputText>
-                <h:outputText value="Flight Number: "></h:outputText>
-                <h:inputText value="#{reservationBean.flightNumber}"></h:inputText>
+            <h:panelGrid columns="2">
+                <h:outputText value="Client: "></h:outputText>
+                <h:selectOneMenu value="#{reservationManagedBean.selectedClient}" onchange="submit()">
+                    <f:selectItems value="#{reservationManagedBean.clientNames}"/>
+                </h:selectOneMenu>
+                <h:outputText value="Flight: "></h:outputText>
+                <h:selectOneMenu value="#{reservationManagedBean.selectedFlight}" onchange="submit()">
+                    <f:selectItems value="#{reservationManagedBean.flightNames}"/>
+                </h:selectOneMenu>
+                <h:outputText value="Departure: "></h:outputText>
+                <h:selectOneMenu value="#{reservationManagedBean.selectedDeparture}" onchange="submit()">
+                    <f:selectItems value="#{reservationManagedBean.departureLocations}"/>
+                </h:selectOneMenu>
+                <h:outputText value="Arrival:  "></h:outputText>
+                <h:selectOneMenu value="#{reservationManagedBean.selectedArrival}" onchange="submit()">
+                    <f:selectItems value="#{reservationManagedBean.arrivalLocations}"/>
+                </h:selectOneMenu>
             </h:panelGrid>
-            <h:commandButton value="Book Flight" action="#{reservationBean.bookFlight}"></h:commandButton>
+            
+            <h:commandButton value="Booking" action="#{reservationManagedBean.performBooking}"></h:commandButton>
         </h:form>
     </ui:define>
 </ui:composition>

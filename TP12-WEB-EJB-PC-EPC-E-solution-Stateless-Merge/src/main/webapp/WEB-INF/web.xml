@@ -5,6 +5,11 @@
          version="5.0"> 
   <display-name>TestBanquePC_EPC</display-name>
   <description></description>
+
+  <context-param>
+    <param-name>javax.faces.FACELETS_DEVELOPMENT</param-name>
+    <param-value>true</param-value>
+</context-param>
   <context-param>
     <param-name>jakarta.faces.DEFAULT_SUFFIX</param-name>
     <param-value>.jsp</param-value>
