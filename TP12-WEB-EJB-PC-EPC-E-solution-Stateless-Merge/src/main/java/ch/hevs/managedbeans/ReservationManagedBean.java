@@ -89,92 +89,59 @@ public class ReservationManagedBean implements Serializable {
         }
     }
 
-    public List<Flight> getFlights() {
-        return flights;
+    public void selectFlight(Flight flight) {
+        this.selectedFlight = flight;
     }
 
-    public List<Passenger> getPassengers() {
-        return passengers;
+    // Method to update the list of destinations based on the selected origin
+    public void searchFlights() {
+        System.out.println("Searched the flights");
+        this.flights = reservation.getFlightsFromOriginDestination(selectedOrigin, selectedDestination);
     }
-
-    public void updateFlights(ValueChangeEvent event) {
-        String passengerName = (String) event.getNewValue();
-        flights = reservation.getFlightsFromPassengerName(passengerName);
-    }
-
-    // Getters and setters for the new properties
-    public Passenger getSelectedPassenger() {
-        return selectedPassenger;
-    }
-    public void setSelectedPassenger(Passenger selectedPassenger) {
-        this.selectedPassenger = selectedPassenger;
-    }
-
-    public Flight getSelectedFlight() {
-        return selectedFlight;
-    }
-    public void setSelectedFlight(Flight selectedFlight) {
-        this.selectedFlight = selectedFlight;
-    }
-
-    public List<Destination> getFlightsDestination() {
-        return flightsDestination;
-    }
-
-    public void setFlightsDestination(List<Destination> flightsDestination) {
-        this.flightsDestination = flightsDestination;
-    }
-
-    public String getSelectedDestination() {
-        return selectedDestination;
-    }
-
-    public void setSelectedDestination(String selectedDestination) {
-        this.selectedDestination = selectedDestination;
-    }
-
-    public List<Origin> getFlightsOrigin() {
-        return flightsOrigin;
-    }
-
-    public void setFlightsOrigin(List<Origin> flightsOrigin) {
-        this.flightsOrigin = flightsOrigin;
-    }
-
-    public String getSelectedOrigin() {
-        return selectedOrigin;
-    }
-
-    public void setSelectedOrigin(String selectedOrigin) {
-        this.selectedOrigin = selectedOrigin;
-    }
-
-    public List<String> getOriginNames() {
-        return originNames;
-    }
-
-    public void setOriginNames(List<String> originNames) {
-        this.originNames = originNames;
-    }
-
-    public List<String> getDestinationNames() {
-        return destinationNames;
-    }
-
-    public void setDestinationNames(List<String> destinationNames) {
-        this.destinationNames = destinationNames;
-    }
-
-    public List<String> getPassengerNames() {
-        return passengerNames;
-    }
-
-    public void setPassengerNames(List<String> passengerNames) {
-        this.passengerNames = passengerNames;
-    }
-
+   
     // Method to perform booking
     public void performBooking() {
-        // Add my booking data to the database
+        try {
+            reservation.bookFlight(selectedPassenger, selectedFlight);
+        } catch (Exception e) {
+            e.printStackTrace();
+            System.err.println("Error performing booking: " + e.getMessage());
+        }
+
     }
+
+    // Getters and setters
+
+    //Passenger
+    public List<Passenger> getPassengers() {return passengers;}
+    public Passenger getSelectedPassenger() {return selectedPassenger; }
+    public void setSelectedPassenger(Passenger selectedPassenger) {this.selectedPassenger = selectedPassenger;}
+    public List<String> getPassengerNames() {return passengerNames;}
+    public void setPassengerNames(List<String> passengerNames) {this.passengerNames = passengerNames;}
+
+
+    //Flight
+    public List<Flight> getFlights() {return flights;}
+    public void setFlights(List<Flight> flights) {this.flights = flights;}
+    public Flight getSelectedFlight() {return selectedFlight;}
+    public void setSelectedFlight(Flight selectedFlight) {this.selectedFlight = selectedFlight;}
+
+    
+ 
+    //Destination
+    public List<Destination> getFlightsDestination() { return flightsDestination;}
+    public void setFlightsDestination(List<Destination> flightsDestination) { this.flightsDestination = flightsDestination;}
+    public String getSelectedDestination() {return selectedDestination;}
+    public void setSelectedDestination(String selectedDestination) {this.selectedDestination = selectedDestination;}
+    public List<String> getDestinationNames() {return destinationNames;}
+    public void setDestinationNames(List<String> destinationNames) {this.destinationNames = destinationNames;}
+
+    //Origin
+    public List<Origin> getFlightsOrigin() {return flightsOrigin;}
+    public void setFlightsOrigin(List<Origin> flightsOrigin) {this.flightsOrigin = flightsOrigin;}
+    public String getSelectedOrigin() {return selectedOrigin;}
+    public void setSelectedOrigin(String selectedOrigin) {this.selectedOrigin = selectedOrigin;}
+    public List<String> getOriginNames() { return originNames;}
+    public void setOriginNames(List<String> originNames) {this.originNames = originNames; }
+
 }

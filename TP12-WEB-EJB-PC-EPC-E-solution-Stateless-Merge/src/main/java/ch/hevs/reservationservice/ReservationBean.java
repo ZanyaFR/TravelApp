@@ -16,16 +16,18 @@ public class ReservationBean implements Reservation {
     @PersistenceContext(unitName = "reservationPU", type=PersistenceContextType.TRANSACTION)
     private EntityManager em;
 
+    // Flight-related methods
     public Flight getFlight(String flightNumber) {
-        
         Query query = em.createQuery("FROM Flight f WHERE f.number=:number");
         query.setParameter("number", flightNumber);
-        
         Flight flight = (Flight) query.getSingleResult();
-        
         return flight;
     }
-    
+
+    public Flight getFlightById(long flightId) {
+        return (Flight) em.createQuery("FROM Flight f where f.id=:id").setParameter("id", flightId).getSingleResult();
+    }
+
     public List<Flight> getFlights() {
         return em.createQuery("FROM Flight").getResultList();
     }
@@ -34,32 +36,41 @@ public class ReservationBean implements Reservation {
         return (List<Flight>) em.createQuery("SELECT p.flights FROM Passenger p where p.lastname=:lastname").setParameter("lastname", passengerName).getResultList();
     }
 
-    //make the reservation method :
-    public void bookFlight(Passenger passenger, Flight flight) {
-        
-        
-        Passenger realPassenger = em.merge(passenger);
-        Flight realFlight = em.merge(flight);
-        
-        realPassenger.setFlight(realFlight);
-        realFlight.setPassenger(realPassenger);
-    }
-
-    public List<Passenger> getPassengers() {
-        return em.createQuery("FROM Passenger").getResultList();
-    }
-    
+    // Passenger-related methods
     public Passenger getPassenger(long passengerId) {
         return (Passenger) em.createQuery("FROM Passenger p where p.id=:id").setParameter("id", passengerId).getSingleResult();
     }
 
-    public Flight getFlightById(long flightId) {
-        return (Flight) em.createQuery("FROM Flight f where f.id=:id").setParameter("id", flightId).getSingleResult();
+    public List<Passenger> getPassengers() {
+        return em.createQuery("FROM Passenger").getResultList();
     }
 
     public void addPassenger(Passenger passenger) {
         em.persist(passenger);
     }
 
-    
+    // Booking-related method
+    public Flight bookFlight(Passenger passenger, Flight flight) {
+        Passenger realPassenger = em.merge(passenger);
+        Flight realFlight = em.merge(flight);
+        realPassenger.setFlight(realFlight);
+        realFlight.setPassenger(realPassenger);
+
+        return realFlight;
+
+    }
+
+    //update flight
+    public void updateFlight(Flight flight) {
+        em.merge(flight);
+    }
+
+    //get flights from origin and destination
+    public List<Flight> getFlightsFromOriginDestination(String selectedOrigin, String selectedDestination) {
+        Query query = em.createQuery("SELECT f FROM Flight f WHERE f.origin.city=:origin AND f.destination.city=:destination");
+        query.setParameter("origin", selectedOrigin);
+        query.setParameter("destination", selectedDestination);
+        return query.getResultList();
+    }
+
 }

@@ -12,23 +12,80 @@
             <h2>Booking Information</h2>
 
             <h:link outcome="addPassenger" value="Add Passenger" />
-            
+
             <br></br>
             <h:panelGrid columns="2">
                 <h:outputText value="Passenger: "></h:outputText>
-                <h:selectOneMenu value="#{reservationManagedBean.selectedPassenger}" onchange="submit()">
+                <h:selectOneMenu value="#{reservationManagedBean.selectedPassenger}">
                     <f:selectItems value="#{reservationManagedBean.passengerNames}"/>
+                    <f:ajax execute="@this" render="@form" />
                 </h:selectOneMenu>
                 <h:outputText value="Origin: "></h:outputText>
-                <h:selectOneMenu value="#{reservationManagedBean.selectedOrigin}" onchange="submit()">
+                <h:selectOneMenu value="#{reservationManagedBean.selectedOrigin}">
                     <f:selectItems value="#{reservationManagedBean.originNames}"/>
+                    <f:ajax execute="@this" render="@form" />
                 </h:selectOneMenu>
                 <h:outputText value="Destination: "></h:outputText>
-                <h:selectOneMenu value="#{reservationManagedBean.selectedDestination}" onchange="submit()">
+                <h:selectOneMenu value="#{reservationManagedBean.selectedDestination}">
                     <f:selectItems value="#{reservationManagedBean.destinationNames}"/>
+                    <f:ajax execute="@this" render="@form" />
                 </h:selectOneMenu>
-            </h:panelGrid>
 
+                <h:outputText value="Flights: "></h:outputText>
+                <h:commandButton value="Search" action="#{reservationManagedBean.searchFlights}">
+                    <f:ajax execute="@form" render="flightsTable" />
+                </h:commandButton>
+            </h:panelGrid>
+            
+            <h:dataTable id="flightsTable" value="#{reservationManagedBean.flights}" var="flight">
+                <h:column>
+                    <f:facet name="header">
+                        <h:outputText value="Flight Number" />
+                    </f:facet>
+                    <h:outputText value="#{flight.number}" />
+                </h:column>
+                <h:column>
+                    <f:facet name="header">
+                    </f:facet>
+                    <h:outputText value="#{flight.origin.city}" />
+                </h:column>
+                <h:column>
+                    <f:facet name="header">
+                        <h:outputText value="Origin" />
+                    </f:facet>
+                    <h:outputText value="#{flight.origin.city}" />
+                </h:column>
+                <h:column>
+                    <f:facet name="header">
+                        <h:outputText value="Destination" />
+                    </f:facet>
+                    <h:outputText value="#{flight.destination.city}" />
+                </h:column>
+                <h:column>
+                    <f:facet name="header">
+                        <h:outputText value="Departure Time" />
+                    </f:facet>
+                    <h:outputText value="#{flight.departureTime}" />
+                </h:column>
+                <h:column>
+                    <f:facet name="header">
+                        <h:outputText value="Arrival Time" />
+                    </f:facet>
+                    <h:outputText value="#{flight.arrivalTime}" />
+                </h:column>
+                <h:column>
+                    <f:facet name="header">
+                        <h:outputText value="Price" />
+                    </f:facet>
+                    <h:outputText value="#{flight.price}" />
+                </h:column>
+                <h:column>
+                    <f:facet name="header">
+                        <h:outputText value="Select" />
+                    </f:facet>
+                    <h:commandButton value="Select" action="#{reservationManagedBean.selectFlight(flight)}" />
+                </h:column>
+            </h:dataTable>
             
             <h:commandButton value="Booking" action="#{reservationManagedBean.performBooking}"></h:commandButton>
         </h:form>
