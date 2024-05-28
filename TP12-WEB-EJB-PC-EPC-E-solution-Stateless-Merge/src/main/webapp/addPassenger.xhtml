@@ -31,6 +31,12 @@
             </h:panelGrid>
 
             <h:commandButton value="Add Passenger" action="#{passengerManagedBean.addPassenger}"/>
+
+            <h:form>
+                <h:commandLink action="reservationForm">
+                 <h:outputText value="Start new reservation"/>
+                </h:commandLink>
+            </h:form>
         </h:form>
     </ui:define>
 </ui:composition>
