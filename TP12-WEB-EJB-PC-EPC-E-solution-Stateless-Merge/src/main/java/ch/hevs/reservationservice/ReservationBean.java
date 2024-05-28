@@ -53,5 +53,13 @@ public class ReservationBean implements Reservation {
         return (Passenger) em.createQuery("FROM Passenger p where p.id=:id").setParameter("id", passengerId).getSingleResult();
     }
 
+    public Flight getFlightById(long flightId) {
+        return (Flight) em.createQuery("FROM Flight f where f.id=:id").setParameter("id", flightId).getSingleResult();
+    }
+
+    public void addPassenger(Passenger passenger) {
+        em.persist(passenger);
+    }
+
     
 }

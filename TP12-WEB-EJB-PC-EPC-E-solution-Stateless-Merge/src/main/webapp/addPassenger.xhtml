@@ -1,0 +1,37 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:ui="http://java.sun.com/jsf/facelets"
+    xmlns:h="http://java.sun.com/jsf/html"
+    xmlns:f="http://java.sun.com/jsf/core">
+
+<ui:composition template="/WEB-INF/templates/BasicTemplate.xhtml">
+    <ui:define name="content">
+        <h:form>
+            <h2>Add New Passenger</h2>
+
+            <h:panelGrid columns="2">
+                <h:outputLabel value="First Name:" for="firstName"/>
+                <h:inputText id="firstName" value="#{passengerManagedBean.newPassenger.firstName}" required="true"/>
+
+                <h:outputLabel value="Last Name:" for="lastName"/>
+                <h:inputText id="lastName" value="#{passengerManagedBean.newPassenger.lastName}" required="true"/>
+
+                <h:outputLabel value="Email:" for="email"/>
+                <h:inputText id="email" value="#{passengerManagedBean.newPassenger.email}" required="true"/>
+
+                <h:outputLabel value="Phone Number:" for="phoneNumber"/>
+                <h:inputText id="phoneNumber" value="#{passengerManagedBean.newPassenger.phoneNumber}" required="true"/>
+
+                <h:outputLabel value="Flight:" for="flight"/>
+                <h:selectOneMenu id="flight" value="#{passengerManagedBean.selectedFlightId}" required="true">
+                    <f:selectItems value="#{reservationManagedBean.flightIdsAndDescriptions}"/>
+                </h:selectOneMenu>
+            </h:panelGrid>
+
+            <h:commandButton value="Add Passenger" action="#{passengerManagedBean.addPassenger}"/>
+        </h:form>
+    </ui:define>
+</ui:composition>
+</html>

@@ -28,5 +28,9 @@ public interface Reservation {
 
     Passenger getPassenger(long passengerId);
 
+    Flight getFlightById(long flight);
+
+    void addPassenger(Passenger passenger);
+
     
 }
