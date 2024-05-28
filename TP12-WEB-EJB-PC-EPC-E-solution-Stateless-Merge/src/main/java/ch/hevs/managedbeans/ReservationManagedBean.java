@@ -33,6 +33,8 @@ public class ReservationManagedBean implements Serializable {
     private Passenger selectedPassenger; // For selecting a client
     
     private List<Flight> flights;
+    private List<String> flightNames;
+    private String selectedFlightName; // For selecting a flight
     private Flight selectedFlight; // For selecting a flight
     
     private List<Destination> flightsDestination;
@@ -55,12 +57,20 @@ public class ReservationManagedBean implements Serializable {
 
             // Initialize flightsDestination and destinationNames
             this.flightsDestination = new ArrayList<>();
+    
+           
             this.destinationNames = new ArrayList<>();
             for (Flight flight : flightsList) {
                 this.flightsDestination.add(flight.getDestination());
             }
             for (Destination destination : flightsDestination) {
                 this.destinationNames.add(destination.getCity());
+            }
+
+            this.flightNames = new ArrayList<>();
+            for (Flight flight : flightsList) {
+                this.flightNames.add(flight.getOrigin().getCity()+" -> "+ flight.getDestination().getCity() + " " +
+                flight.getDepartureDate() + " " + flight.getDepartureTime() +"-" + flight.getArrivalTime() + " | " + flight.getPrice() + " CHF");
             }
 
             // Initialize flightsOrigin and originNames
@@ -103,6 +113,8 @@ public class ReservationManagedBean implements Serializable {
     public void performBooking() {
         try {
             reservation.bookFlight(selectedPassenger, selectedFlight);
+            
+            System.out.println("Booking performed successfully");
         } catch (Exception e) {
             e.printStackTrace();
             System.err.println("Error performing booking: " + e.getMessage());
@@ -125,7 +137,10 @@ public class ReservationManagedBean implements Serializable {
     public void setFlights(List<Flight> flights) {this.flights = flights;}
     public Flight getSelectedFlight() {return selectedFlight;}
     public void setSelectedFlight(Flight selectedFlight) {this.selectedFlight = selectedFlight;}
-
+    public List<String> getFlightNames() {return flightNames;}
+    public void setFlightNames(List<String> flightNames) {this.flightNames = flightNames;}
+    public String getSelectedFlightName() {return selectedFlightName;}
+    public void setSelectedFlightName(String selectedFlightName) {this.selectedFlightName = selectedFlightName;}
     
  
     //Destination

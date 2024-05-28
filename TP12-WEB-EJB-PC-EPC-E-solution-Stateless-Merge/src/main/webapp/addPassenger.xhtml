@@ -6,12 +6,21 @@
     xmlns:h="http://java.sun.com/jsf/html"
     xmlns:f="http://java.sun.com/jsf/core">
 
+<head>
+    <title>Add Passenger</title>
+    <style type="text/css">
+        .form-content {
+            margin-top: 10px;
+        }
+    </style>
+</head>
+
 <ui:composition template="/WEB-INF/templates/BasicTemplate.xhtml">
     <ui:define name="content">
         <h:form>
             <h2>Add New Passenger</h2>
 
-            <h:panelGrid columns="2">
+            <h:panelGrid columns="2" styleClass="form-content">
                 <h:outputLabel value="First Name:" for="firstName"/>
                 <h:inputText id="firstName" value="#{passengerManagedBean.newPassenger.firstName}" required="true"/>
 

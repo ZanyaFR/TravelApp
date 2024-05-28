@@ -6,12 +6,48 @@
     xmlns:h="http://java.sun.com/jsf/html"
     xmlns:f="http://java.sun.com/jsf/core">
 
+<head>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+        }
+        h2 {
+            color: #333;
+        }
+        .form-content {
+            margin: 20px;
+        }
+        .form-content h:outputLabel {
+            margin-right: 10px;
+        }
+        .form-content h:inputText {
+            margin-bottom: 10px;
+        }
+        .form-content h:commandButton {
+            background-color: #4CAF50;
+            border: none;
+            color: white;
+            padding: 15px 32px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 16px;
+            margin: 4px 2px;
+            cursor: pointer;
+        }
+        .form-content h:link {
+            color: #4CAF50;
+            text-decoration: none;
+        }
+    </style>
+</head>
+
 <ui:composition template="/WEB-INF/templates/BasicTemplate.xhtml">
     <ui:define name="content">
         <h:form>
             <h2>Add New Passenger</h2>
 
-            <h:panelGrid columns="2">
+            <h:panelGrid columns="2" styleClass="form-content">
                 <h:outputLabel value="First Name:" for="firstName"/>
                 <h:inputText id="firstName" value="#{passengerManagedBean.newPassenger.firstName}" required="true"/>
 

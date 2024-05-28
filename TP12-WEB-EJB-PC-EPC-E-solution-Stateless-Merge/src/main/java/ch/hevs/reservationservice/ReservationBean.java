@@ -6,6 +6,7 @@ import ch.hevs.businessobject.Flight;
 import ch.hevs.businessobject.Passenger;
 import jakarta.ejb.Stateless;
 import jakarta.persistence.EntityManager;
+import jakarta.persistence.EntityTransaction;
 import jakarta.persistence.PersistenceContext;
 import jakarta.persistence.PersistenceContextType;
 import jakarta.persistence.Query;
@@ -51,12 +52,33 @@ public class ReservationBean implements Reservation {
 
     // Booking-related method
     public Flight bookFlight(Passenger passenger, Flight flight) {
+       
+       EntityTransaction tx = null;
+		try {
+        tx = em.getTransaction();
+        tx.begin();
+
         Passenger realPassenger = em.merge(passenger);
         Flight realFlight = em.merge(flight);
         realPassenger.setFlight(realFlight);
         realFlight.setPassenger(realPassenger);
 
+        realFlight.setNbPassengers(realFlight.getNbPassengers() + 1);
+
+        em.persist(realFlight);
+        em.persist(realPassenger);
+
+        tx.commit();
+
         return realFlight;
+        } catch (Exception e) {
+            e.printStackTrace();
+            if (tx != null) {
+                tx.rollback();
+            }
+            return null;
+        }
+
 
     }
 

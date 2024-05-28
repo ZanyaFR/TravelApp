@@ -4,7 +4,6 @@ import java.io.Serializable;
 
 import javax.naming.InitialContext;
 import javax.naming.NamingException;
-import jakarta.annotation.ManagedBean;
 import jakarta.annotation.PostConstruct;
 import jakarta.enterprise.context.SessionScoped;
 import jakarta.inject.Named;
@@ -40,7 +39,6 @@ public class PassengerManagedBean implements Serializable {
     public void setNewPassenger(Passenger newPassenger) {
         this.newPassenger = newPassenger;
     }
-
 
     public void addPassenger() {
         try {
