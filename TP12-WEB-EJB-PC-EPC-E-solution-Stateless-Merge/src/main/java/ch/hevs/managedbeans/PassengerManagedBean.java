@@ -19,15 +19,14 @@ public class PassengerManagedBean implements Serializable {
     private static final long serialVersionUID = 1L;
 
     private Reservation reservation;
-
     private Passenger newPassenger = new Passenger();
-    private Long selectedFlightId;
 
     @PostConstruct
     public void initialize() {
         try {
             InitialContext ctx = new InitialContext();
             reservation = (Reservation) ctx.lookup("java:global/TP12-WEB-EJB-PC-EPC-E-1.0.0/ReservationBean!ch.hevs.reservationservice.Reservation");
+        
         } catch (NamingException e) {
             e.printStackTrace();
             System.err.println("Error initializing PassengerManagedBean: " + e.getMessage());
@@ -42,18 +41,9 @@ public class PassengerManagedBean implements Serializable {
         this.newPassenger = newPassenger;
     }
 
-    public Long getSelectedFlightId() {
-        return selectedFlightId;
-    }
-
-    public void setSelectedFlightId(Long selectedFlightId) {
-        this.selectedFlightId = selectedFlightId;
-    }
 
     public void addPassenger() {
         try {
-            Flight flight = reservation.getFlightById(selectedFlightId);
-            newPassenger.setFlight(flight);
             reservation.addPassenger(newPassenger);
             newPassenger = new Passenger();  // Reset the form after adding the passenger
         } catch (Exception e) {

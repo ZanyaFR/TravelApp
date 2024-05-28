@@ -24,19 +24,12 @@
                 <h:outputLabel value="Phone Number:" for="phoneNumber"/>
                 <h:inputText id="phoneNumber" value="#{passengerManagedBean.newPassenger.phoneNumber}" required="true"/>
 
-                <h:outputLabel value="Flight:" for="flight"/>
-                <h:selectOneMenu id="flight" value="#{passengerManagedBean.selectedFlightId}" required="true">
-                    <f:selectItems value="#{reservationManagedBean.flightIdsAndDescriptions}"/>
-                </h:selectOneMenu>
             </h:panelGrid>
 
             <h:commandButton value="Add Passenger" action="#{passengerManagedBean.addPassenger}"/>
 
-            <h:form>
-                <h:commandLink action="reservationForm">
-                 <h:outputText value="Start new reservation"/>
-                </h:commandLink>
-            </h:form>
+            <h:link outcome="reservationForm" value=" Book a flight now" />
+
         </h:form>
     </ui:define>
 </ui:composition>

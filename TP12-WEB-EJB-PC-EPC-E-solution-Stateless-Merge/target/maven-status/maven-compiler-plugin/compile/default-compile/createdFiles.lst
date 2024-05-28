@@ -1,6 +1,5 @@
 ch\hevs\businessobject\Flight.class
 ch\hevs\businessobject\Origin.class
-ch\hevs\managedbeans\PassengerManagedBean.class
 ch\hevs\reservationservice\Reservation.class
 ch\hevs\exception\TravelException.class
 ch\hevs\businessobject\Passenger.class

@@ -38,11 +38,22 @@ public class PopulateDB extends TestCase {
 						 "14:00", o1, d1, 100, 100, false);
 			Passenger p1 = new Passenger("John", "Doe", "ss","1234567890", f1);
 
+			Destination d2 = new Destination("Zurich", "Switzerland", "GVA", "2");
+			Origin o2 = new Origin("Madrid", "Spain", "LHR", "3");
+			Flight f2 = new Flight("2021-12-12", "13:00", "2021-12-12",
+						 "14:00", o2, d2, 100, 100, false);
+			Passenger p2 = new Passenger("Hellen", "Doe", "ss","1234567890", f1);
+
 			
 			em.persist(d1);
 			em.persist(o1);
 			em.persist(p1);
 			em.persist(f1);
+
+			em.persist(d2);
+			em.persist(o2);
+			em.persist(p2);
+			em.persist(f2);
 
 			tx.commit();
 
