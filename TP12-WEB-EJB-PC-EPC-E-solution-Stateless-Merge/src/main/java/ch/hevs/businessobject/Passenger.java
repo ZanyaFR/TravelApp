@@ -23,6 +23,10 @@ public class Passenger {
     @JoinColumn(name = "flight_id")
     private Flight flight;
 
+    //Constructors
+
+    public Passenger() {} 
+
 
     public Passenger(String firstName, String lastName, String email, String phoneNumber, Flight flight) {
         this.firstName = firstName;
@@ -32,9 +36,8 @@ public class Passenger {
         this.flight = flight;
     }
 
-
-    public Passenger() {}
-
+    //getters, and setters
+    
     //ID
     public Long getId() { return id; }
     public void setId(Long id) { this.id = id; }

@@ -41,8 +41,7 @@ public class Flight {
 
     //constructors
 
-    Flight() {
-    }
+    Flight() {    }
 
     public Flight(String departureDate, String departureTime, String arrivalDate, 
     String arrivalTime,Origin origin, Destination destination, int price,int capacity, boolean isFull) {
@@ -96,7 +95,6 @@ public class Flight {
         }else{
         this.nbPassengers =+ nbPassengers;
         }
-
     }
     
     //isFull

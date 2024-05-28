@@ -17,6 +17,9 @@ public class Origin extends Country{
     private Set<Flight> flights = new HashSet<>();
 
 
+    //Constructors
+    
+    public Origin() {super();}
     public Origin(String City, String Name, String airportCode, String terminal) {
         super(City, Name, airportCode);
         this.terminal = terminal;

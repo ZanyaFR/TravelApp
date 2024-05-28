@@ -16,6 +16,8 @@ public abstract class Country{
     private String airportCode;
 
 
+    public Country() {}
+    
     public Country(String City, String Name, String airportCode) {
         this.City = City;
         this.Name = Name;

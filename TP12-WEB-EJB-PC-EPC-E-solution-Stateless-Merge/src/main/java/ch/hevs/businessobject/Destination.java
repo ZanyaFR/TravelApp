@@ -16,6 +16,13 @@ public class Destination extends Country{
     private Set<Flight> flights = new HashSet<>();
 
 
+    //Constructors
+
+    public Destination() {
+        super();
+    }
+
+
     public Destination( String City, String Name,
      String airportCode, String BaggageClaim) {
         super( City, Name, airportCode);

@@ -23,7 +23,7 @@
                 </h:selectOneMenu>
                 <h:outputText value="Destination: "></h:outputText>
                 <h:selectOneMenu value="#{reservationManagedBean.selectedDestination}" onchange="submit()">
-                    <f:selectItems value="#{reservationManagedBean.flightsDestination}"/>
+                    <f:selectItems value="#{reservationManagedBean.destinationNames}"/>
                 </h:selectOneMenu>
             </h:panelGrid>
 

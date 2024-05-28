@@ -3,6 +3,7 @@ package ch.hevs.managedbeans;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 import javax.naming.InitialContext;
 import javax.naming.NamingException;
@@ -21,7 +22,7 @@ import jakarta.inject.Named;
 
 @ManagedBean
 @SessionScoped
-@Named("reservationBean")
+@Named("reservationManagedBean")
 public class ReservationManagedBean implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -29,7 +30,7 @@ public class ReservationManagedBean implements Serializable {
 
     private List<Passenger> passengers;
     private List<String> passengerNames;
-    private String selectedPassenger; // For selecting a client
+    private Passenger selectedPassenger; // For selecting a client
     
     private List<Flight> flights;
     private Flight selectedFlight; // For selecting a flight
@@ -38,51 +39,54 @@ public class ReservationManagedBean implements Serializable {
     private List<String> destinationNames;
     private String selectedDestination; // For selecting a departure location
 
-
     private List<Origin> flightsOrigin;
     private List<String> originNames;
     private String selectedOrigin; // For selecting an arrival location
 
     @PostConstruct
     public void initialize() {
-        
         try {
-        // use JNDI to inject reference to Reservation EJB
-        InitialContext ctx = new InitialContext();
-        reservation = (Reservation) ctx.lookup("java:global/TP12-WEB-EJB-PC-EPC-E-1.0.0/ReservationBean!ch.hevs.reservationservice.Reservation");
+            // use JNDI to inject reference to Reservation EJB
+            InitialContext ctx = new InitialContext();
+            reservation = (Reservation) ctx.lookup("java:global/TP12-WEB-EJB-PC-EPC-E-1.0.0/ReservationBean!ch.hevs.reservationservice.Reservation");
 
-        // get Flights & their destinations and Origin
-        List<Flight> flightsList = reservation.getFlights();
-        this.flightsDestination = new ArrayList<Destination>();
-        for (Flight flight : flightsList) {
-            this.flightsDestination.add(flight.getDestination());
-        }
-        for (Destination destination : flightsDestination) {
-            this.destinationNames.add(destination.getCity());
-        }
-        this.flightsOrigin = new ArrayList<Origin>();
-        for (Flight flight : flightsList) {
-            this.flightsOrigin.add(flight.getOrigin());
-        }
-        for (Origin origin : flightsOrigin) {
-            this.originNames.add(origin.getCity());
-        }
+            // get Flights & their destinations and Origin
+            List<Flight> flightsList = reservation.getFlights();
 
-        // get passengers
-        List<Passenger> passengerList = reservation.getPassengers();
-        this.passengers = new ArrayList<Passenger>();
-        for (Passenger passenger : passengerList) {
-            this.passengers.add(passenger);
-        }
-        for (Passenger passenger : passengers) {
-            this.passengerNames.add(passenger.getFirstName() + " " + passenger.getLastName());
-        }
+            // Initialize flightsDestination and destinationNames
+            this.flightsDestination = new ArrayList<>();
+            this.destinationNames = new ArrayList<>();
+            for (Flight flight : flightsList) {
+                this.flightsDestination.add(flight.getDestination());
+            }
+            for (Destination destination : flightsDestination) {
+                this.destinationNames.add(destination.getCity());
+            }
+
+            // Initialize flightsOrigin and originNames
+            this.flightsOrigin = new ArrayList<>();
+            this.originNames = new ArrayList<>();
+            for (Flight flight : flightsList) {
+                this.flightsOrigin.add(flight.getOrigin());
+            }
+            for (Origin origin : flightsOrigin) {
+                this.originNames.add(origin.getCity());
+            }
+
+            // get passengers
+            List<Passenger> passengerList = reservation.getPassengers();
+            this.passengers = new ArrayList<>();
+            this.passengerNames = new ArrayList<>();
+            for (Passenger passenger : passengerList) {
+                this.passengers.add(passenger);
+            }
+            for (Passenger passenger : passengers) {
+                this.passengerNames.add(passenger.getFirstName() + " " + passenger.getLastName());
+            }
         } catch (NamingException e) {
             e.printStackTrace();
             System.err.println("Error initializing ReservationManagedBean: " + e.getMessage());
-
         }
-
     }
 
     public List<Flight> getFlights() {
@@ -99,10 +103,10 @@ public class ReservationManagedBean implements Serializable {
     }
 
     // Getters and setters for the new properties
-    public String getSelectedPassenger() {
+    public Passenger getSelectedPassenger() {
         return selectedPassenger;
     }
-    public void setSelectedPassenger(String selectedPassenger) {
+    public void setSelectedPassenger(Passenger selectedPassenger) {
         this.selectedPassenger = selectedPassenger;
     }
 
@@ -141,18 +145,36 @@ public class ReservationManagedBean implements Serializable {
         return selectedOrigin;
     }
 
-    public void searchFlights() {
-        // Get the list of flights that destination and Origin match the input from reservationForm.xhtml
-
-
-        }
-    
-    // Method to perform booking
-    public void performBooking() {
-        // Add my booking data to the database        
-
-
-        
+    public void setSelectedOrigin(String selectedOrigin) {
+        this.selectedOrigin = selectedOrigin;
     }
 
+    public List<String> getOriginNames() {
+        return originNames;
+    }
+
+    public void setOriginNames(List<String> originNames) {
+        this.originNames = originNames;
+    }
+
+    public List<String> getDestinationNames() {
+        return destinationNames;
+    }
+
+    public void setDestinationNames(List<String> destinationNames) {
+        this.destinationNames = destinationNames;
+    }
+
+    public List<String> getPassengerNames() {
+        return passengerNames;
+    }
+
+    public void setPassengerNames(List<String> passengerNames) {
+        this.passengerNames = passengerNames;
+    }
+
+    // Method to perform booking
+    public void performBooking() {
+        // Add my booking data to the database
+    }
 }
